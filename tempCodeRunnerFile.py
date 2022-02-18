@@ -13,7 +13,7 @@ class BFS_CLASS:
         self.Parent_Node_Index_i = Parent_Node_Index_I
         self.Goal_Node = Goal_Node
         self.Open_Nodes = Open_Nodes
-        self.Future_State = Node_State_I
+        
 def print_matrix(state):
     counter = 0
     for row in range(0, len(state), 3):
@@ -25,8 +25,6 @@ def print_matrix(state):
             print(int(state[element]), "|", end=" ")
         counter = counter +1
         print("\n-------------")
-
-##Function to check if the next node is visited or not
 
 def check_visited(my_data):
     for ite in range(len(my_data.Visited)):
@@ -51,21 +49,12 @@ def locate_zero(my_data):
     if pos.size == 0:
         print("Not a Valid State")
     else:
-        return pos[0,0],pos[0,1]
+        return pos
 
 def check_neighbour(my_data):
-    i,j = locate_zero(my_data)
-    if (i-1)>=0:
-        #check v and move
-        set_future_state(my_data)
-        check_visited(my_data) 
-    if (i+1)<3:
-        check_visited(my_data)
-    if (j-1)>=0:
-        check_goal(my_data)
 
-    if (j+1)<3:
-        check_goal(my_data)
+    # if 
+    
     # if east -  #check visited - move - update open nodes (add parent index and child index)
     #if north  #check visited - move - update open nodes (add parent index and child index)
     # if west  #check visited - move - update open nodes (add parent index and child index)
@@ -74,10 +63,10 @@ def check_neighbour(my_data):
          
     return 0
 
-def set_future_state(my_data,i,j):
-    my_data.Future_State = my_data.Node_State_I
-    my_data.Future_State[i][j]
-
+def move_forward(my_data,direction):
+    if direction == 0:
+        # north 
+        return 0
     # if south
     #if east
     #if west 
@@ -88,11 +77,11 @@ def set_future_state(my_data,i,j):
 
 
 def bfs_search(my_data):
-    # if check_goal(my_data) == False:
-    #     if check_neighbour(my_data) != True:
+    if check_goal(my_data) != True:
+        if check_neighbour(my_data) != True:
             # decide direction
-            # move_zero(my_data)
-    return 0
+            move_forward(my_data)
+
 
     
 
@@ -120,7 +109,7 @@ def main():
     #                [5,0,8],
     #                [2,3,6]]])
     Node_State_I= [[1,4,7],
-                   [5,0,8],
+                   [5,7,8],
                    [2,3,6]]
     Visited_States = [Node_State_I]
     # np.append(Visited_States,[[1,4,7],
@@ -134,8 +123,14 @@ def main():
     Node_Index_I = Parent_Node_Index_I
     Open_Nodes = []
     my_data = BFS_CLASS(Visited_States,Node_State_I,Node_Index_I,Parent_Node_Index_I,Goal_Node,Open_Nodes)
-    bfs_search(my_data)
-
+    # bfs_search(my_data)
+    # print(my_data.Visited[1],'\n')
+    # print(my_data.Node_State_I)
+    # check_visited(my_data)
+    # print(my_data.Node_State_I==my_data.Visited)
+    # print(my_data.Visited)
+    # check_goal(my_data)
+    print(locate_zero(my_data))
 
 
 if __name__ == '__main__':
