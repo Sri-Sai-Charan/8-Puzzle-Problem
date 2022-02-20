@@ -8,8 +8,6 @@ This code uses BFS to traverse nodes and locates the goal node. It stops searchi
 
 ## Getting Started
 
-You will need to import numpy library 
-
 ### Dependencies
 
 * numpy library, python version 3.X.X needed before installing program.
