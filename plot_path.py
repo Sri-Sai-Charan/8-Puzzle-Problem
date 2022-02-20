@@ -32,6 +32,7 @@ def check_visited(my_data,Future_State):
             return False
         else:
             my_data.Visited.append(Future_State.copy())
+
             return True
 
 
@@ -39,6 +40,9 @@ def check_goal(my_data):
     if my_data.Node_State_I==my_data.Goal_Node:
         print("Goal Reached")
         my_data.Goal_Check = True
+        my_data.Visited.append(my_data.Goal_Node)
+        end = len(my_data.Parent_Node_Index_i)-1
+        my_data.Parent_Node_Index_i.append(my_data.Parent_Node_Index_i[end])
         return True
     else: 
         return False
@@ -61,30 +65,30 @@ def locate_zero(my_data):
         return pos[0,0],pos[0,1]
 
 def check_neighbour(my_data):
-    check_left(my_data)
-    check_top(my_data)
-    check_right(my_data)
-    check_bottom(my_data)
+    ActionMoveLeft(my_data)
+    ActionMoveUp(my_data)
+    ActionMoveRight(my_data)
+    ActionMoveDown(my_data)
     back_track(my_data)
     check_goal(my_data)
     return 0
 
-def check_left(my_data):
+def ActionMoveLeft(my_data):
     i,j = locate_zero(my_data)
     if (j-1)>=0:
         check_future_state(my_data,i,j-1)
 
-def check_top(my_data):
+def ActionMoveUp(my_data):
     i,j = locate_zero(my_data)
     if (i-1)>=0:
         check_future_state(my_data,i-1,j)
 
-def check_right(my_data):
+def ActionMoveRight(my_data):
     i,j = locate_zero(my_data)
     if (j+1)<3:
         check_future_state(my_data,i,j+1)
 
-def check_bottom(my_data):
+def ActionMoveDown(my_data):
     i,j = locate_zero(my_data)
     if (i+1)<3:
         check_future_state(my_data,i+1,j)
@@ -136,16 +140,54 @@ def generate_path(my_data):
     for ite in range(len(path_list)-1):
         path_values.append(my_data.Visited[path_list[ite]-1])
     path_values.append(my_data.Goal_Node)
-
+    write_nodePath(path_values)
+    write_Nodes(my_data.Visited)
+    write_NodesInfo(my_data.Visited,my_data.Parent_Node_Index_i)
     for ite in range(0,(len(path_values))):
         print_matrix(path_values[ite],my_data)
+
+def write_nodePath(path_values):
+    write_arr = np.array(path_values)
+    file = open("nodePath.txt", "w+")
+    ind = 1
+    for pri in write_arr:
+        content = str(pri.flatten()) 
+        file.write(("Step " + str(ind) + " : " + content))
+        file.write('\n')
+        ind +=1
+    file.close()
+
+def write_Nodes(visited):
+    write_arr = np.array(visited)
+    file = open("Nodes.txt", "w+")
+    ind = 1
+    for pri in write_arr:
+        content = str(pri.flatten()) 
+        file.write(("Node " + str(ind) + " : " + content))
+        file.write('\n')
+        ind +=1
+    file.close()
+
+def write_NodesInfo(visited,parent_index):
+    write_arr = np.array(visited)
+    file = open("NodesInfo.txt", "w+")
+    ind = 1
+    file.write("Node_index        Node_State            Parent_Node_index \n")
+    for pri in write_arr:
+        content = str(pri.flatten()) 
+        content2 = str(parent_index[ind-1])
+        file.write(("    "+ str(ind)+"             " + content + "             "+ content2 ))
+        file.write('\n')
+        ind +=1
+    file.close()
+
 def main():
-    Node_State_I= [[1,4,7],[5,0,8],[2,3,6]]
+    Node_State_I= [[4,7,0],[1,2,8],[3,5,6]]
     Goal_Node = [[1,4,7],[2,5,8],[3,6,0]]
 
     Visited_States = [Node_State_I.copy()]
     Open_Nodes = [[Node_State_I.copy()]]
-    my_data = BFS_CLASS(Visited_States,Node_State_I,[1],[1],Goal_Node,Open_Nodes)
+    my_data = BFS_CLASS(Visited_States,Node_State_I,[1],[0],Goal_Node,Open_Nodes)
     bfs_search(my_data)
 
 if __name__ == '__main__':
