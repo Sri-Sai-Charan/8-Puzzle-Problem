@@ -20,7 +20,7 @@ You will need to import numpy library
 
 ### Executing program
 
-* How to run the program
+* Open your IDE in the parent folder of plot_path.py
 * Open your text editor and ensure the python interpreter is at least python version 3.X.X and run the below comand (for VSC) or run the file
 ```
 python3 plot_path.py
