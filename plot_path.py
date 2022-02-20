@@ -12,11 +12,11 @@ class BFS_CLASS:
         self.count_parent = 1
         self.count_node = 1
         self.step_count = 0
+
 def print_matrix(state,my_data):
     my_data.step_count+=1
     print("Step :",my_data.step_count)
     print("-------------")
-    
     for row in range(0, 3):
         for col in range(0, 3):
             if col == 0:
@@ -25,7 +25,6 @@ def print_matrix(state,my_data):
         print('\n-------------')
     print("\n--\n")
 
-##Function to check if the next node is visited or not
 def check_visited(my_data,Future_State):
     for ite in range(len(my_data.Visited)):
         if (my_data.Visited[ite]==Future_State).all():
@@ -126,7 +125,6 @@ def generate_path(my_data):
     b = np.array(my_data.Node_Index_I)
     a = np.array(my_data.Parent_Node_Index_i)
     path_list = []
-    # path_list.append(b[-1])
     while True:
         idxa = np.argwhere(b==a[idxa[0,0]])
         idxb = np.argwhere(b==a[idxb[0,0]])
@@ -151,9 +149,7 @@ def write_nodePath(path_values):
     file = open("nodePath.txt", "w+")
     ind = 1
     for pri in write_arr:
-        content = str(pri.flatten()) 
-        file.write(("Step " + str(ind) + " : " + content))
-        file.write('\n')
+        file.write(("Step " + str(ind) + " : " + str(pri.flatten()) + "\n"))
         ind +=1
     file.close()
 
@@ -162,9 +158,7 @@ def write_Nodes(visited):
     file = open("Nodes.txt", "w+")
     ind = 1
     for pri in write_arr:
-        content = str(pri.flatten()) 
-        file.write(("Node " + str(ind) + " : " + content))
-        file.write('\n')
+        file.write(("Node " + str(ind) + " : " + str(pri.flatten()) + "\n"))
         ind +=1
     file.close()
 
@@ -174,14 +168,12 @@ def write_NodesInfo(visited,parent_index):
     ind = 1
     file.write("Node_index        Node_State            Parent_Node_index \n")
     for pri in write_arr:
-        content = str(pri.flatten()) 
-        content2 = str(parent_index[ind-1])
-        file.write(("    "+ str(ind)+"             " + content + "             "+ content2 ))
-        file.write('\n')
+        file.write(("    "+ str(ind)+"             " + str(pri.flatten()) + "             "+ str(parent_index[ind-1]) + "\n" ))
         ind +=1
     file.close()
 
 def main():
+    #Enter your start and goal node by replacing the below values 
     Node_State_I= [[4,7,0],[1,2,8],[3,5,6]]
     Goal_Node = [[1,4,7],[2,5,8],[3,6,0]]
 

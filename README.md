@@ -7,7 +7,8 @@ Python Code to Solve the 8-Puzzle-Problem
 This code uses BFS to traverse nodes and locates the goal node. It stops searching once the goal node is reched and begins backtracking. The backtracking is used to find the optimal path to be taken after BFS has been implemented.
 
 ## Getting Started
-
+* Enter your start node in main() by replacing the value assigned to "Node_State_I"
+* Enter your goal node in main() by replacing the value assigned to "Goal_Node"
 ### Dependencies
 
 * numpy library, python version 3.X.X needed before installing program.
