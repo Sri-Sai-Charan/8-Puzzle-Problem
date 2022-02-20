@@ -27,7 +27,7 @@ python3 plot_path.py
 ```
 ## Authors
 
-Sri Sai Charan Velisetti - svellise
+Sri Sai Charan Velisetti - svellise@umd.edu
 
 
 
