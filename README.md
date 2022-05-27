@@ -24,6 +24,18 @@ This code uses BFS to traverse nodes and locates the goal node. It stops searchi
 ```
 python3 plot_path.py
 ```
+
+### Results 
+
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s1.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s2.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s3.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s4.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s5.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s6.png)
+![alt text](https://github.com/Sri-Sai-Charan/8-Puzzle-Problem/blob/main/Resources/s7.png)
+
+
 ## Authors
 
 Sri Sai Charan Velisetti - svellise@umd.edu
